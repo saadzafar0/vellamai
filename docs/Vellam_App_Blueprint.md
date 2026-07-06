@@ -108,7 +108,7 @@ const llm = new ChatOllama({
 }
 ```
 
-## **Agent 4a: Image Prompt Generator (Parallel)** 
+## **Agent 4: Image Prompt Generator (Parallel)** 
 
 - **Input:** Topic + Strategy + Caption. 
 
@@ -118,27 +118,7 @@ const llm = new ChatOllama({
 
 _"Futuristic HR dashboard with holographic employee profiles, clean minimal design, blue and white palette, professional corporate setting, 4K render"_ 
 
-## **Agent 4b: Quality Critic (Parallel)** 
 
-- **Input:** Full caption from Agent 3. 
-
-- **Action:** Scores the post (1-10) on hook strength, clarity, CTA specificity, tone match, and hashtag 
-
-- relevance. Triggers a loop back to Agent 2 if the score is below 7 (Max 2 retries). 
-
-## **Output (JSON):** 
-
-```
-{
-```
-
-```
-  "score": 0,
-  "passed": true,
-  "feedback": "string",
-  "improvements": ["string"]
-}
-```
 
 ## **5. Image Generation via Pollinations AI** 
 
@@ -162,11 +142,6 @@ contentWriter
 seoOptimizer
   ↓
   ├── imagePromptAgent (Parallel)
-  └── qualityCritic (Parallel)
-        ↓
-        [score ≥ 7?] ── NO ──→ contentWriter (Retry)
-          │
-         YES
 ```
 
 ```

@@ -1,4 +1,4 @@
-import { createGraphStream } from "@/lib/sse/stream";
+import { createGraphStream } from "@/app/api/sse/stream";
 
 export async function POST(request: Request) {
   const { topic } = (await request.json()) as { topic: string };

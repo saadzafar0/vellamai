@@ -1,9 +1,8 @@
 import { Annotation } from "@langchain/langgraph";
-import type { Content } from "@/lib/agents/schemas/content.schema";
-import type { CriticOutput } from "@/lib/agents/schemas/critic.schema";
-import type { Post } from "@/lib/agents/schemas/post.schema";
-import type { SeoOutput } from "@/lib/agents/schemas/seo.schema";
-import type { Strategy } from "@/lib/agents/schemas/strategy.schema";
+import type { Content } from "@/app/api/agents/schemas/content.schema";
+import type { Post } from "@/app/api/agents/schemas/post.schema";
+import type { SeoOutput } from "@/app/api/agents/schemas/seo.schema";
+import type { Strategy } from "@/app/api/agents/schemas/strategy.schema";
 
 export const GraphState = Annotation.Root({
   topic: Annotation<string>(),
@@ -23,17 +22,9 @@ export const GraphState = Annotation.Root({
     reducer: (_, next) => next,
     default: () => null,
   }),
-  critic: Annotation<CriticOutput | null>({
-    reducer: (_, next) => next,
-    default: () => null,
-  }),
   post: Annotation<Post | null>({
     reducer: (_, next) => next,
     default: () => null,
-  }),
-  retryCount: Annotation<number>({
-    reducer: (_, next) => next,
-    default: () => 0,
   }),
 });
 

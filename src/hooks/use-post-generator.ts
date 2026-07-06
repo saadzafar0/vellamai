@@ -81,7 +81,11 @@ export function usePostGenerator() {
       for (const chunk of lines) {
         const dataLine = chunk.replace(/^data: /, "").trim();
         if (!dataLine) continue;
-        handleEvent(JSON.parse(dataLine) as SSEEvent);
+        try {
+          handleEvent(JSON.parse(dataLine) as SSEEvent);
+        } catch {
+          console.warn("[usePostGenerator] Skipping malformed SSE chunk:", dataLine.slice(0, 100));
+        }
       }
     }
   }
@@ -97,5 +101,3 @@ function subscribe(listener: Listener) {
 function getSnapshot() {
   return state;
 }
-
-export type { GeneratedPost };

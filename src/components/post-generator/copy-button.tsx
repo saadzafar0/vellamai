@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export function CopyButton({ text }: { text: string }) {
+export function CopyButton({ text, className }: { text: string; className?: string }) {
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
@@ -13,8 +13,8 @@ export function CopyButton({ text }: { text: string }) {
   }
 
   return (
-    <Button type="button" onClick={handleCopy} className="w-fit">
-      {copied ? "Copied!" : "Copy caption"}
+    <Button type="button" onClick={handleCopy} className={className}>
+      {copied ? "✓ Copied" : "📋 Copy Content"}
     </Button>
   );
 }

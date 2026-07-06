@@ -1,6 +1,6 @@
-import type { GraphStateType } from "@/lib/agents/state";
-import { createOllamaClient } from "@/lib/llm/ollama-client";
-import { IMAGE_PROMPT } from "@/lib/agents/prompts/image.prompt";
+import type { GraphStateType } from "@/app/api/agents/state";
+import { createOllamaClient } from "@/app/api/llm/ollama-client";
+import { IMAGE_PROMPT } from "@/app/api/agents/prompts/image.prompt";
 
 export async function imagePromptAgent(
   state: GraphStateType,
