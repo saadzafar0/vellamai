@@ -18,7 +18,14 @@ export function parseJsonFromLLM<T = unknown>(raw: string): T {
 
   // Try the whole text first
   try {
-    return JSON.parse(text) as T;
+    const result = JSON.parse(text);
+    if (
+      typeof result === "string" &&
+      (result.trim().startsWith("{") || result.trim().startsWith("["))
+    ) {
+      return parseJsonFromLLM(result);
+    }
+    return result as T;
   } catch {
     // Fall through to substring search
   }
@@ -71,7 +78,14 @@ export function parseJsonFromLLM<T = unknown>(raw: string): T {
     if (end !== -1) {
       const candidate = text.slice(start, end + 1);
       try {
-        return JSON.parse(candidate) as T;
+        const result = JSON.parse(candidate);
+        if (
+          typeof result === "string" &&
+          (result.trim().startsWith("{") || result.trim().startsWith("["))
+        ) {
+          return parseJsonFromLLM(result);
+        }
+        return result as T;
       } catch {
         // Fall through to error
       }
